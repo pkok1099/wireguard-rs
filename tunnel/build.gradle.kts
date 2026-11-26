@@ -20,6 +20,12 @@ android {
     namespace = "${pkg}.tunnel"
     defaultConfig {
         minSdk = 24
+        // arm64-v8a only: the user only needs the 64-bit ARM build.
+        // This also keeps Gradle from building the Rust engine for
+        // all four ABIs on every release (19 min -> ~6 min).
+        ndk {
+            abiFilters += "arm64-v8a"
+        }
     }
     externalNativeBuild {
         cmake {
@@ -33,7 +39,7 @@ android {
         all {
             externalNativeBuild {
                 cmake {
-                    targets("libwg-go.so", "libwg.so", "libwg-quick.so")
+                    targets("libwg_rs.so", "libwg.so", "libwg-quick.so")
                     arguments("-DGRADLE_USER_HOME=${project.gradle.gradleUserHomeDir}")
                     arguments("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
                 }

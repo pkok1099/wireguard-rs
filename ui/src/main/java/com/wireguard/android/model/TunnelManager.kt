@@ -100,11 +100,23 @@ class TunnelManager(private val configStore: ConfigStore) : BaseObservable() {
 
     fun onCreate() {
         applicationScope.launch {
-            try {
-                onTunnelsLoaded(withContext(Dispatchers.IO) { configStore.enumerate() }, withContext(Dispatchers.IO) { getBackend().runningTunnelNames })
+            // Load the tunnel list even if the backend is unavailable: a backend
+            // failure must not leave the list empty forever (the tunnels
+            // Deferred would never complete and the UI would stay blank while
+            // imports still succeed). Running states are best-effort here.
+            val present = try {
+                withContext(Dispatchers.IO) { configStore.enumerate() }
             } catch (e: Throwable) {
                 Log.e(TAG, Log.getStackTraceString(e))
+                emptySet<String>()
             }
+            val running = try {
+                withContext(Dispatchers.IO) { getBackend().runningTunnelNames }
+            } catch (e: Throwable) {
+                Log.e(TAG, "Failed to get running tunnels, assuming none running", e)
+                emptySet<String>()
+            }
+            onTunnelsLoaded(present, running)
         }
     }
 

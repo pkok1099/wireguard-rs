@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">DNS ana makinesi çözülemedi: \"%s\"</string>
     <string name="tunnel_rename_error">Tünel yeniden adlandırılamadı: %s</string>
     <string name="tunnel_rename_success">Tünelin adı “%s” olarak değiştirildi</string>
-    <string name="type_name_go_userspace">Go kullanıcı uzayı</string>
+    <string name="type_name_rust_userspace">Go kullanıcı uzayı</string>
     <string name="type_name_kernel_module">Çekirdek modülü</string>
     <string name="unknown_error">Bilinmeyen hata</string>
     <string name="updater_avalable">Uygulama güncellemesi mevcut. Lütfen şimdi güncelleyin.</string>

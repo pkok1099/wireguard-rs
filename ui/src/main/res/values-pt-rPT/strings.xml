@@ -215,7 +215,7 @@
     <string name="tunnel_on_error">Não foi possível ligar o túnel (wgTurnOn retornou %d)</string>
     <string name="tunnel_rename_error">Não foi possível renomear o túnel: %s</string>
     <string name="tunnel_rename_success">Túnel renomeado com sucesso para “%s”</string>
-    <string name="type_name_go_userspace">Go userspace</string>
+    <string name="type_name_rust_userspace">Go userspace</string>
     <string name="type_name_kernel_module">Módulo de kernel</string>
     <string name="unknown_error">Erro desconhecido</string>
     <string name="version_summary_checking">A verificar versão de backend %s</string>

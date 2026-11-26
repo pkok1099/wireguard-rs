@@ -36,7 +36,7 @@ import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.wireguard.android.Application
 import com.wireguard.android.R
-import com.wireguard.android.backend.GoBackend
+import com.wireguard.android.backend.RustBackend
 import com.wireguard.android.backend.Tunnel
 import com.wireguard.android.databinding.Keyed
 import com.wireguard.android.databinding.ObservableKeyedArrayList
@@ -156,8 +156,12 @@ class TvMainActivity : AppCompatActivity() {
                                 Log.e(TAG, message, e)
                             }
                         } else {
-                            if (Application.getBackend() is GoBackend) {
-                                val intent = GoBackend.VpnService.prepare(binding.root.context)
+                            // getBackend() throws if backend init failed;
+                            // fall through so the error surfaces when the
+                            // tunnel state is actually changed.
+                            val isRustBackend = try { Application.getBackend() is RustBackend } catch (_: Throwable) { false }
+                            if (isRustBackend) {
+                                val intent = RustBackend.VpnService.prepare(binding.root.context)
                                 if (intent != null) {
                                     pendingTunnel = item
                                     permissionActivityResultLauncher.launch(intent)

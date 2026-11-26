@@ -216,7 +216,7 @@
     <string name="tunnel_dns_failure">ホスト名 “%s” を名前解決できませんでした</string>
     <string name="tunnel_rename_error">トンネル名を変更できません: %s</string>
     <string name="tunnel_rename_success">トンネル名を “%s” に変更しました</string>
-    <string name="type_name_go_userspace">Go ユーザースペース</string>
+    <string name="type_name_rust_userspace">Go ユーザースペース</string>
     <string name="type_name_kernel_module">カーネルモジュール</string>
     <string name="unknown_error">未知のエラー</string>
     <string name="updater_avalable">アプリを更新できます。今すぐ更新してください。</string>

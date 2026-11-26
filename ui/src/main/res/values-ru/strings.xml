@@ -255,7 +255,7 @@
     <string name="tunnel_dns_failure">Не удалось определить DNS имя: “%s”</string>
     <string name="tunnel_rename_error">Не удалось переименовать туннель: %s</string>
     <string name="tunnel_rename_success">Туннель успешно переименован в “%s”</string>
-    <string name="type_name_go_userspace">Go в пользовательском пространстве</string>
+    <string name="type_name_rust_userspace">Go в пользовательском пространстве</string>
     <string name="type_name_kernel_module">Модуль ядра</string>
     <string name="unknown_error">Неизвестная ошибка</string>
     <string name="updater_avalable">Доступно обновление приложения. Пожалуйста, обновите.</string>

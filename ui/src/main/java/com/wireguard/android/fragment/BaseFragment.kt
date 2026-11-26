@@ -18,7 +18,7 @@ import com.wireguard.android.Application
 import com.wireguard.android.R
 import com.wireguard.android.activity.BaseActivity
 import com.wireguard.android.activity.BaseActivity.OnSelectedTunnelChangedListener
-import com.wireguard.android.backend.GoBackend
+import com.wireguard.android.backend.RustBackend
 import com.wireguard.android.backend.Tunnel
 import com.wireguard.android.databinding.TunnelDetailFragmentBinding
 import com.wireguard.android.databinding.TunnelListItemBinding
@@ -66,9 +66,17 @@ abstract class BaseFragment : Fragment(), OnSelectedTunnelChangedListener {
         } ?: return
         val activity = activity ?: return
         activity.lifecycleScope.launch {
-            if (Application.getBackend() is GoBackend) {
+            // getBackend() throws if backend init failed (e.g. native lib
+            // failed to load); never let that crash the toggle — fall through
+            // to setTunnelStateWithPermissionsResult, which reports the error.
+            val isRustBackend = try {
+                Application.getBackend() is RustBackend
+            } catch (_: Throwable) {
+                false
+            }
+            if (isRustBackend) {
                 try {
-                    val intent = GoBackend.VpnService.prepare(activity)
+                    val intent = RustBackend.VpnService.prepare(activity)
                     if (intent != null) {
                         pendingTunnel = tunnel
                         pendingTunnelUp = checked

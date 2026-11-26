@@ -216,7 +216,7 @@
     <string name="tunnel_dns_failure">Tidak bisa mencari nama host DNS \"%s\"</string>
     <string name="tunnel_rename_error">Nama tunel %s tidak bisa diganti</string>
     <string name="tunnel_rename_success">Berhasil mengganti nama tunnel ke “%s”</string>
-    <string name="type_name_go_userspace">Ke userspace</string>
+    <string name="type_name_rust_userspace">Ke userspace</string>
     <string name="type_name_kernel_module">Modul kernel</string>
     <string name="unknown_error">Eror tidak diketahui</string>
     <string name="updater_avalable">Pembaruan aplikasi tersedia. Perbarui sekarang.</string>

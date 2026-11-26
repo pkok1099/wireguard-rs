@@ -226,7 +226,7 @@
     <string name="tunnel_name">Tunnelnaam</string>
     <string name="tunnel_rename_error">Kan tunnel niet hernoemen: %s</string>
     <string name="tunnel_rename_success">Tunnel succesvol hernoemd naar \"%s\"</string>
-    <string name="type_name_go_userspace">Go userspace</string>
+    <string name="type_name_rust_userspace">Go userspace</string>
     <string name="type_name_kernel_module">Kernel module</string>
     <string name="unknown_error">Onbekende fout</string>
     <string name="updater_avalable">Er is een nieuwe versie beschikbaar. Update a.u.b.</string>

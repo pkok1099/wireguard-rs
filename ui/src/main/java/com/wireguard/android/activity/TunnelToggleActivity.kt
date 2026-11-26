@@ -17,7 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import com.wireguard.android.Application
 import com.wireguard.android.QuickTileService
 import com.wireguard.android.R
-import com.wireguard.android.backend.GoBackend
+import com.wireguard.android.backend.RustBackend
 import com.wireguard.android.backend.Tunnel
 import com.wireguard.android.util.ErrorMessages
 import kotlinx.coroutines.launch
@@ -48,16 +48,19 @@ class TunnelToggleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
-            if (Application.getBackend() is GoBackend) {
-                try {
-                    val intent = GoBackend.VpnService.prepare(this@TunnelToggleActivity)
+            // getBackend() throws when backend init failed; catch Throwable
+            // (it can be an Error such as UnsatisfiedLinkError), otherwise
+            // the toggle activity force-closes instead of showing the error.
+            try {
+                if (Application.getBackend() is RustBackend) {
+                    val intent = RustBackend.VpnService.prepare(this@TunnelToggleActivity)
                     if (intent != null) {
                         permissionActivityResultLauncher.launch(intent)
                         return@launch
                     }
-                } catch (e: Exception) {
-                    Toast.makeText(this@TunnelToggleActivity, ErrorMessages[e], Toast.LENGTH_LONG).show()
                 }
+            } catch (e: Throwable) {
+                Toast.makeText(this@TunnelToggleActivity, ErrorMessages[e], Toast.LENGTH_LONG).show()
             }
             toggleTunnelWithPermissionsResult()
         }

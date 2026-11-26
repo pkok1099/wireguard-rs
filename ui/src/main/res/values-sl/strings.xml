@@ -255,7 +255,7 @@
     <string name="tunnel_dns_failure">Imena DNS gostitelja ni bilo mogoče razrešiti: \"%s\"</string>
     <string name="tunnel_rename_error">Tunela ni bilo mogoče preimenovati: %s</string>
     <string name="tunnel_rename_success">Tunel uspešno preimenovan v „%s“</string>
-    <string name="type_name_go_userspace">Uporabniški prostor Go</string>
+    <string name="type_name_rust_userspace">Uporabniški prostor Go</string>
     <string name="type_name_kernel_module">Modul jedra</string>
     <string name="unknown_error">Neznana napaka</string>
     <string name="updater_avalable">Na voljo je posodobitev aplikacije. Prosimo, posodobite zdaj.</string>

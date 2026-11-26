@@ -14,7 +14,7 @@ import com.wireguard.android.Application
 import com.wireguard.android.BuildConfig
 import com.wireguard.android.R
 import com.wireguard.android.backend.Backend
-import com.wireguard.android.backend.GoBackend
+import com.wireguard.android.backend.RustBackend
 import com.wireguard.android.backend.WgQuickBackend
 import com.wireguard.android.util.ErrorMessages
 import com.wireguard.android.util.lifecycleScope
@@ -42,14 +42,25 @@ class VersionPreference(context: Context, attrs: AttributeSet?) : Preference(con
     companion object {
         private fun getBackendPrettyName(context: Context, backend: Backend) = when (backend) {
             is WgQuickBackend -> context.getString(R.string.type_name_kernel_module)
-            is GoBackend -> context.getString(R.string.type_name_go_userspace)
+            is RustBackend -> context.getString(R.string.type_name_rust_userspace)
             else -> ""
         }
     }
 
     init {
         lifecycleScope.launch {
-            val backend = Application.getBackend()
+            // getBackend() throws if backend init failed; show "unknown"
+            // instead of crashing the settings screen.
+            val backend = try {
+                Application.getBackend()
+            } catch (_: Throwable) {
+                null
+            }
+            if (backend == null) {
+                versionSummary = getContext().getString(R.string.version_summary_unknown, "")
+                notifyChanged()
+                return@launch
+            }
             versionSummary = getContext().getString(R.string.version_summary_checking, getBackendPrettyName(context, backend).lowercase())
             notifyChanged()
             versionSummary = try {

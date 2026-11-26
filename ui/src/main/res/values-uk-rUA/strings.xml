@@ -255,7 +255,7 @@
     <string name="tunnel_dns_failure">Не вдалося знайти DNS хост: “%s</string>
     <string name="tunnel_rename_error">Не вдалося перейменувати тунель: %s</string>
     <string name="tunnel_rename_success">Тунель успішно перейменовано на \"%s\"</string>
-    <string name="type_name_go_userspace">Go userspace</string>
+    <string name="type_name_rust_userspace">Go userspace</string>
     <string name="type_name_kernel_module">Модуль ядра</string>
     <string name="unknown_error">Невідома помилка</string>
     <string name="updater_avalable">Доступне оновлення додатка. Будь ласка, оновіть.</string>

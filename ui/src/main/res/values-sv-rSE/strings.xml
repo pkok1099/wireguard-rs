@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">Det går inte att lösa DNS-värdnamn: ”%s”</string>
     <string name="tunnel_rename_error">Kan inte byta namn på tunnel: %s</string>
     <string name="tunnel_rename_success">Lyckades döpa om tunnel till “%s”</string>
-    <string name="type_name_go_userspace">Go userspace</string>
+    <string name="type_name_rust_userspace">Go userspace</string>
     <string name="type_name_kernel_module">Kärnmodul</string>
     <string name="unknown_error">Okänt fel</string>
     <string name="updater_avalable">Det finns en uppdatering till appen. Vänligen uppdatera nu.</string>

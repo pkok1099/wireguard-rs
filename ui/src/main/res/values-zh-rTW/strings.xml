@@ -216,7 +216,7 @@
     <string name="tunnel_dns_failure">無法解析 DNS 主機名稱: \"%s\"</string>
     <string name="tunnel_rename_error">無法重新命名通道: %s</string>
     <string name="tunnel_rename_success">成功重新命名通道 \"%s\"</string>
-    <string name="type_name_go_userspace">Go 使用者空間</string>
+    <string name="type_name_rust_userspace">Go 使用者空間</string>
     <string name="type_name_kernel_module">核心模組</string>
     <string name="unknown_error">未知的錯誤</string>
     <string name="updater_avalable">已有新的更新，請立刻更新。</string>

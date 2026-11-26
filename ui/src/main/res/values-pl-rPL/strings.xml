@@ -255,7 +255,7 @@
     <string name="tunnel_dns_failure">Nie można odnaleźć nazwy hosta DNS: “%s”</string>
     <string name="tunnel_rename_error">Nie można zmienić nazwy tunelu: %s</string>
     <string name="tunnel_rename_success">Pomyślnie zmieniono nazwę tunelu na „%s”</string>
-    <string name="type_name_go_userspace">Przestrzeń użytkownika Go</string>
+    <string name="type_name_rust_userspace">Przestrzeń użytkownika Go</string>
     <string name="type_name_kernel_module">Moduł jądra</string>
     <string name="unknown_error">Nieznany błąd</string>
     <string name="updater_avalable">Dostępna jest aktualizacja aplikacji. Zaktualizuj teraz.</string>

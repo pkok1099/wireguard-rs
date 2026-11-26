@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">Kan ikke slå opp DNS-vertsnavn: “%s\"</string>
     <string name="tunnel_rename_error">Kan ikke endre navn på tunnel: %s</string>
     <string name="tunnel_rename_success">Endret navn på tunnelen til «%s»</string>
-    <string name="type_name_go_userspace">Bruk userspace</string>
+    <string name="type_name_rust_userspace">Bruk userspace</string>
     <string name="type_name_kernel_module">Kjernemodul</string>
     <string name="unknown_error">Ukjent feil</string>
     <string name="updater_avalable">En programoppdatering er tilgjengelig. Oppdater nå.</string>

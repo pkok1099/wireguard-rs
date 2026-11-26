@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">Impossible de résoudre le nom d\'hôte DNS: “%s”</string>
     <string name="tunnel_rename_error">Impossible de renommer le tunnel : %s</string>
     <string name="tunnel_rename_success">Tunnel renommé avec succès en «%s »</string>
-    <string name="type_name_go_userspace">Implémentation Go en espace utilisateur</string>
+    <string name="type_name_rust_userspace">Implémentation Go en espace utilisateur</string>
     <string name="type_name_kernel_module">Module noyau</string>
     <string name="unknown_error">Erreur inconnue</string>
     <string name="updater_avalable">Une mise à jour est disponible. Veuillez mettre l\'application à jour.</string>

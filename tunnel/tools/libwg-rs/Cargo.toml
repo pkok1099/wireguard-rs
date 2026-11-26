@@ -1,0 +1,40 @@
+[package]
+name = "wg-rs"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "WireGuard userspace backend for wireguard-android, in Rust (gotatun), JNI drop-in replacement for libwg-go"
+license = "Apache-2.0"
+
+[lib]
+name = "wg_rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+# gotatun via the pkok1099 fork, vendored as a git submodule at
+# tunnel/tools/gotatun (pinned at e95ba96 = Release 0.10.3, same rev the
+# git dependency used before), so the device loop can be patched
+# (e.g. recv_many_from) without forking the dependency itself.
+gotatun = { path = "../gotatun/gotatun", features = ["device"], default-features = false }
+# Only the tokio features this crate uses directly (gotatun enables its
+# own set on top). "full" also pulls in process/signal/io-std/macros,
+# which nothing here needs. "fs"/"sync"/"io-util" were dropped when the
+# TUN halves moved from tokio::fs::File to AsyncFd (2026-11-26).
+tokio = { version = "1", features = ["rt-multi-thread", "time", "net"] }
+jni = "0.21"
+x25519-dalek = { version = "2", features = ["static_secrets"] }
+ipnetwork = "0.21"
+libc = "0.2"
+
+[profile.release]
+opt-level = 3
+# LTO + one codegen unit: smaller .so and (in theory) faster code, at the
+# cost of a slower link. Worth it for a VPN that lives in the background.
+lto = true
+codegen-units = 1
+# A Rust panic at the JNI boundary must unwind into a Java exception,
+# never abort the whole app process (the Go backend had the same property
+# via the Go runtime). Keep unwind on.
+panic = "unwind"
+# Do not strip here: Gradle strips the .so at packaging time.
+strip = false

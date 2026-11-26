@@ -32,7 +32,14 @@ class KernelModuleEnablerPreference(context: Context, attrs: AttributeSet?) : Pr
     init {
         isVisible = false
         lifecycleScope.launch {
-            setState(if (Application.getBackend() is WgQuickBackend) State.ENABLED else State.DISABLED)
+            // getBackend() throws if backend init failed; treat as disabled
+            // instead of crashing the settings screen.
+            val enabled = try {
+                Application.getBackend() is WgQuickBackend
+            } catch (_: Throwable) {
+                false
+            }
+            setState(if (enabled) State.ENABLED else State.DISABLED)
         }
     }
 

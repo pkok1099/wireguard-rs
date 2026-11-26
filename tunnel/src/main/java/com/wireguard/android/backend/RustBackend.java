@@ -35,13 +35,13 @@ import androidx.annotation.Nullable;
 import androidx.collection.ArraySet;
 
 /**
- * Implementation of {@link Backend} that uses the wireguard-go userspace implementation to provide
+ * Implementation of {@link Backend} that uses the gotatun (Rust) userspace implementation to provide
  * WireGuard tunnels.
  */
 @NonNullForAll
-public final class GoBackend implements Backend {
+public final class RustBackend implements Backend {
     private static final int DNS_RESOLUTION_RETRIES = 10;
-    private static final String TAG = "WireGuard/GoBackend";
+    private static final String TAG = "WireGuard/RustBackend";
     @Nullable private static AlwaysOnCallback alwaysOnCallback;
     private static CompletableFuture<VpnService> vpnService = new CompletableFuture<>();
     private final Context context;
@@ -50,12 +50,12 @@ public final class GoBackend implements Backend {
     private int currentTunnelHandle = -1;
 
     /**
-     * Public constructor for GoBackend.
+     * Public constructor for RustBackend.
      *
      * @param context An Android {@link Context}
      */
-    public GoBackend(final Context context) {
-        SharedLibraryLoader.loadSharedLibrary(context, "wg-go");
+    public RustBackend(final Context context) {
+        SharedLibraryLoader.loadSharedLibrary(context, "wg_rs");
         this.context = context;
     }
 
@@ -177,9 +177,9 @@ public final class GoBackend implements Backend {
     }
 
     /**
-     * Get the version of the underlying wireguard-go library.
+     * Get the version of the underlying gotatun library.
      *
-     * @return {@link String} value of the version of the wireguard-go library.
+     * @return {@link String} value of the version of the gotatun library.
      */
     @Override
     public String getVersion() {
@@ -291,7 +291,7 @@ public final class GoBackend implements Backend {
             }
 
             // Build config
-            final String goConfig = config.toWgUserspaceString();
+            final String rsConfig = config.toWgUserspaceString();
 
             // Create the vpn tunnel with android API
             final VpnService.Builder builder = service.getBuilder();
@@ -337,8 +337,8 @@ public final class GoBackend implements Backend {
             try (final ParcelFileDescriptor tun = builder.establish()) {
                 if (tun == null)
                     throw new BackendException(Reason.TUN_CREATION_ERROR);
-                Log.d(TAG, "Go backend " + wgVersion());
-                currentTunnelHandle = wgTurnOn(tunnel.getName(), tun.detachFd(), goConfig);
+                Log.d(TAG, "Rust backend " + wgVersion());
+                currentTunnelHandle = wgTurnOn(tunnel.getName(), tun.detachFd(), rsConfig);
             }
             if (currentTunnelHandle < 0)
                 throw new BackendException(Reason.GO_ACTIVATION_ERROR_CODE, currentTunnelHandle);
@@ -367,7 +367,7 @@ public final class GoBackend implements Backend {
     }
 
     /**
-     * Callback for {@link GoBackend} that is invoked when {@link VpnService} is started by the
+     * Callback for {@link RustBackend} that is invoked when {@link VpnService} is started by the
      * system's Always-On VPN mode.
      */
     public interface AlwaysOnCallback {
@@ -375,10 +375,10 @@ public final class GoBackend implements Backend {
     }
 
     /**
-     * {@link android.net.VpnService} implementation for {@link GoBackend}
+     * {@link android.net.VpnService} implementation for {@link RustBackend}
      */
     public static class VpnService extends android.net.VpnService {
-        @Nullable private GoBackend owner;
+        @Nullable private RustBackend owner;
 
         public Builder getBuilder() {
             return new Builder();
@@ -421,7 +421,7 @@ public final class GoBackend implements Backend {
             return super.onStartCommand(intent, flags, startId);
         }
 
-        public void setOwner(final GoBackend owner) {
+        public void setOwner(final RustBackend owner) {
             this.owner = owner;
         }
     }

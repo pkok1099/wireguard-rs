@@ -227,7 +227,7 @@ Aitäh veelkord sinu panuse eest.</string>
     <string name="tunnel_dns_failure">Ei saa lahendada DNS hostinime: \"%s\"</string>
     <string name="tunnel_rename_error">Tunneli ümbernimetamine ebaõnnestus: %s</string>
     <string name="tunnel_rename_success">Tunnel edukalt ümbernimetatud \"%s\" -iks</string>
-    <string name="type_name_go_userspace">Go kasutajamaa</string>
+    <string name="type_name_rust_userspace">Go kasutajamaa</string>
     <string name="type_name_kernel_module">Tuumamoodul</string>
     <string name="unknown_error">Tundmatu viga</string>
     <string name="updater_avalable">Rakenduse uuendus on saadaval. Palun uuenda nüüd.</string>

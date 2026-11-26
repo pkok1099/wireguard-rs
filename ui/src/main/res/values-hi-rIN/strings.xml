@@ -199,7 +199,7 @@
     <string name="tunnel_on_error">टनल चालू करने में असमर्थ (wgTurnOn लौटा %d)</string>
     <string name="tunnel_rename_error">टनल का नाम बदलने में असमर्थ: %s</string>
     <string name="tunnel_rename_success">सफलतापूर्वक टनल का नाम बदलकर “%s” कर दिया गया</string>
-    <string name="type_name_go_userspace">userspace पे जाए </string>
+    <string name="type_name_rust_userspace">userspace पे जाए </string>
     <string name="type_name_kernel_module">कर्नेल मॉड्यूल</string>
     <string name="unknown_error">अज्ञात त्रुटि</string>
     <string name="version_summary">%1$s बैकएंड %2$s</string>

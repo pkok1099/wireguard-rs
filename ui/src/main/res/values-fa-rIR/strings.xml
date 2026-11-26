@@ -231,7 +231,7 @@
     <string name="tunnel_dns_failure">ناتوان در یافتن DNS نام میزبان: \"%s\"</string>
     <string name="tunnel_rename_error">ناتوان در تغییر نام تونل: %s</string>
     <string name="tunnel_rename_success">نام تونل با موفقیت تغییر یافت به “%s”</string>
-    <string name="type_name_go_userspace">رفتن به فضای کاربر</string>
+    <string name="type_name_rust_userspace">رفتن به فضای کاربر</string>
     <string name="type_name_kernel_module">واحد هسته</string>
     <string name="unknown_error">خطای نامشخص</string>
     <string name="updater_avalable">یک بروزرسانی برای برنامه موجود است. لطفا اکنون بروزرسانی کنید.</string>

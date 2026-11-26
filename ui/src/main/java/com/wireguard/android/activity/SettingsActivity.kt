@@ -83,7 +83,9 @@ class SettingsActivity : AppCompatActivity() {
             ).filterNotNull()
             wgQuickOnlyPrefs.forEach { it.isVisible = false }
             lifecycleScope.launch {
-                if (Application.getBackend() is WgQuickBackend) {
+                // getBackend() throws if backend init failed; hide the
+                // wg-quick-only prefs instead of crashing settings.
+                if (try { Application.getBackend() is WgQuickBackend } catch (_: Throwable) { false }) {
                     ++preferenceScreen.initialExpandedChildrenCount
                     wgQuickOnlyPrefs.forEach { it.isVisible = true }
                 } else {
@@ -97,12 +99,17 @@ class SettingsActivity : AppCompatActivity() {
             val kernelModuleEnabler = preferenceManager.findPreference<Preference>("kernel_module_enabler")
             if (WgQuickBackend.hasKernelSupport()) {
                 lifecycleScope.launch {
-                    if (Application.getBackend() !is WgQuickBackend) {
-                        try {
-                            withContext(Dispatchers.IO) { Application.getRootShell().start() }
-                        } catch (_: Throwable) {
-                            kernelModuleEnabler?.parent?.removePreference(kernelModuleEnabler)
+                    try {
+                        if (Application.getBackend() !is WgQuickBackend) {
+                            try {
+                                withContext(Dispatchers.IO) { Application.getRootShell().start() }
+                            } catch (_: Throwable) {
+                                kernelModuleEnabler?.parent?.removePreference(kernelModuleEnabler)
+                            }
                         }
+                    } catch (_: Throwable) {
+                        // Backend init failed; the enabler pref is unusable.
+                        kernelModuleEnabler?.parent?.removePreference(kernelModuleEnabler)
                     }
                 }
             } else {

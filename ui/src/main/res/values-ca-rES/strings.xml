@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">Impossible resoldre el nom del domini \"%s\"</string>
     <string name="tunnel_rename_error">No s\'ha pogut renombrar el túnel: %s</string>
     <string name="tunnel_rename_success">El nom del túnel s\'ha canviat correctament a \"%s\"</string>
-    <string name="type_name_go_userspace">Anar a l\'espai d\'usuari</string>
+    <string name="type_name_rust_userspace">Anar a l\'espai d\'usuari</string>
     <string name="type_name_kernel_module">Mòdul del kernel</string>
     <string name="unknown_error">Error desconegut</string>
     <string name="updater_avalable">Hi ha una actualització disponible. Si us plau, actualitzi ara.</string>

@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">No se puede resolver el nombre de host DNS: “%s”</string>
     <string name="tunnel_rename_error">No se puede renombrar túnel: %s</string>
     <string name="tunnel_rename_success">Túnel renombrado con éxito a “%s”</string>
-    <string name="type_name_go_userspace">Ir al espacio de usuario</string>
+    <string name="type_name_rust_userspace">Ir al espacio de usuario</string>
     <string name="type_name_kernel_module">Módulo Kernel</string>
     <string name="unknown_error">Error desconocido</string>
     <string name="updater_avalable">Una actualización de la aplicación está disponible. Por favor, actualice ahora.</string>

@@ -18,7 +18,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import com.google.android.material.color.DynamicColors
 import com.wireguard.android.backend.Backend
-import com.wireguard.android.backend.GoBackend
+import com.wireguard.android.backend.RustBackend
 import com.wireguard.android.backend.WgQuickBackend
 import com.wireguard.android.configStore.FileConfigStore
 import com.wireguard.android.model.TunnelManager
@@ -76,8 +76,8 @@ class Application : android.app.Application() {
             }
         }
         if (backend == null) {
-            backend = GoBackend(applicationContext)
-            GoBackend.setAlwaysOnCallback { get().applicationScope.launch { get().tunnelManager.restoreState(true) } }
+            backend = RustBackend(applicationContext)
+            RustBackend.setAlwaysOnCallback { get().applicationScope.launch { get().tunnelManager.restoreState(true) } }
         }
         return backend
     }
@@ -114,6 +114,10 @@ class Application : android.app.Application() {
                 futureBackend.complete(backend!!)
             } catch (e: Throwable) {
                 Log.e(TAG, Log.getStackTraceString(e))
+                // Fail fast instead of hanging forever: otherwise
+                // TunnelManager.onCreate() waits on getBackend() indefinitely
+                // and the tunnel list stays empty with no error shown.
+                futureBackend.completeExceptionally(e)
             }
         }
         Updater.monitorForUpdates()

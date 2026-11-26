@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">Kunne ikke opslå DNS adresse: \"%s\"</string>
     <string name="tunnel_rename_error">Kan ikke omdøbe tunnel: %s</string>
     <string name="tunnel_rename_success">Tunnel blev succesfuldt omdøbt til \"%s\"</string>
-    <string name="type_name_go_userspace">Go userspace</string>
+    <string name="type_name_rust_userspace">Go userspace</string>
     <string name="type_name_kernel_module">Kerne modul</string>
     <string name="unknown_error">Ukendt fejl</string>
     <string name="updater_avalable">En applikationsopdatering er tilgængelig. Opdatér venligst nu.</string>

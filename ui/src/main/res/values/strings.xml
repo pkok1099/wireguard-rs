@@ -233,7 +233,7 @@
     <string name="tunnel_dns_failure">Unable to resolve DNS hostname: “%s”</string>
     <string name="tunnel_rename_error">Unable to rename tunnel: %s</string>
     <string name="tunnel_rename_success">Successfully renamed tunnel to “%s”</string>
-    <string name="type_name_go_userspace">Go userspace</string>
+    <string name="type_name_rust_userspace">Rust userspace</string>
     <string name="type_name_kernel_module">Kernel module</string>
     <string name="unknown_error">Unknown error</string>
     <string name="updater_avalable">An application update is available. Please update now.</string>

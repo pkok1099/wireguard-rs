@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">Impossibile risolve il nome di domino: \"%s\"</string>
     <string name="tunnel_rename_error">Impossibile rinominare il tunnel: %s</string>
     <string name="tunnel_rename_success">Tunnel rinominato correttamente in “%s”</string>
-    <string name="type_name_go_userspace">Spazio utente Go</string>
+    <string name="type_name_rust_userspace">Spazio utente Go</string>
     <string name="type_name_kernel_module">Modulo kernel</string>
     <string name="unknown_error">Errore sconosciuto</string>
     <string name="updater_avalable">È disponibile un aggiornamento dell\'app. Si prega di aggiornare ora.</string>

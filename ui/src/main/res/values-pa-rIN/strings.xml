@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">DNS ਹੋਸਟ-ਨਾਂ ਹੱਲ ਕਰਨ ਲਈ ਅਸਮਰੱਥ: “%s”</string>
     <string name="tunnel_rename_error">ਟਨਲ ਨਾਂ-ਬਦਲਣ ਲਈ ਅਸਮਰੱਥ: %s</string>
     <string name="tunnel_rename_success">ਟਨਲ ਦਾ ਨਾਂ \"%s\" ਵਜੋਂ ਕਾਮਯਾਬੀ ਨਾਲ ਬਦਲਿਆ ਗਿਆ</string>
-    <string name="type_name_go_userspace">ਵਰਤੋਂ-ਸਪੇਸ ਤੇ ਜਾਓ</string>
+    <string name="type_name_rust_userspace">ਵਰਤੋਂ-ਸਪੇਸ ਤੇ ਜਾਓ</string>
     <string name="type_name_kernel_module">ਕਰਨਲ ਮੋਡੀਊਲ</string>
     <string name="unknown_error">ਅਣਪਛਾਤੀ ਗਲਤੀ</string>
     <string name="updater_avalable">ਐਪਲੀਕੇਸ਼ਨ ਅੱਪਡੇਟ ਮੌਜੂਦ ਹੈ। ਹੁਣੇ ਅੱਪਡੇਟ ਕਰੋ।</string>

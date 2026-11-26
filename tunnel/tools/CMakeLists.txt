@@ -17,17 +17,28 @@ add_executable(libwg.so ${WG_SOURCES})
 target_include_directories(libwg.so PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/wireguard-tools/src/uapi/linux/" "${CMAKE_CURRENT_SOURCE_DIR}/wireguard-tools/src/")
 target_compile_options(libwg.so PUBLIC -std=gnu11 -include ${CMAKE_CURRENT_SOURCE_DIR}/ndk-compat/compat.h -DRUNSTATEDIR=\"/data/data/${ANDROID_PACKAGE_NAME}/cache\")
 
-add_custom_target(libwg-go.so WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libwg-go" COMMENT "Building wireguard-go" VERBATIM COMMAND "${ANDROID_HOST_PREBUILTS}/bin/make"
-    ANDROID_ARCH_NAME=${ANDROID_ARCH_NAME}
-    ANDROID_PACKAGE_NAME=${ANDROID_PACKAGE_NAME}
-    GRADLE_USER_HOME=${GRADLE_USER_HOME}
-    CC=${CMAKE_C_COMPILER}
-    CFLAGS=${CMAKE_C_FLAGS}
-    LDFLAGS=${CMAKE_SHARED_LINKER_FLAGS}
-    SYSROOT=${CMAKE_SYSROOT}
-    TARGET=${CMAKE_C_COMPILER_TARGET}
-    DESTDIR=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
-    BUILDDIR=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/../generated-src
+# libwg_rs.so: Rust backend (gotatun) replacing wireguard-go.
+# Built with cargo-ndk, which needs the Rust Android target for the ABI
+# installed (`rustup target add aarch64-linux-android armv7-linux-androideabi
+# i686-linux-android x86_64-linux-android`) and cargo-ndk on PATH
+# (~/.cargo/bin). The .so is copied into the Gradle library output dir
+# under the exact name Kotlin loads: libwg_rs.so (loadLibrary "wg_rs" —
+# System.mapLibraryName turns "wg_rs" into "libwg_rs.so", underscore, not
+# a dash; a dash-named file is never found and the backend fails to start).
+if(ANDROID_ABI STREQUAL "arm64-v8a")
+    set(WG_RS_TARGET "aarch64-linux-android")
+elseif(ANDROID_ABI STREQUAL "armeabi-v7a")
+    set(WG_RS_TARGET "armv7-linux-androideabi")
+elseif(ANDROID_ABI STREQUAL "x86")
+    set(WG_RS_TARGET "i686-linux-android")
+elseif(ANDROID_ABI STREQUAL "x86_64")
+    set(WG_RS_TARGET "x86_64-linux-android")
+else()
+    message(FATAL_ERROR "libwg_rs: unsupported ANDROID_ABI ${ANDROID_ABI}")
+endif()
+
+add_custom_target(libwg_rs.so WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libwg-rs" COMMENT "Building libwg-rs (gotatun)" VERBATIM COMMAND ${CMAKE_COMMAND} -E env "PATH=$ENV{HOME}/.cargo/bin:$ENV{PATH}" "ANDROID_NDK_HOME=${CMAKE_ANDROID_NDK}" cargo ndk --target ${ANDROID_ABI} --platform ${ANDROID_NATIVE_API_LEVEL} -- build --release
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_CURRENT_SOURCE_DIR}/libwg-rs/target/${WG_RS_TARGET}/release/libwg_rs.so" "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libwg_rs.so"
 )
 
 # Strip unwanted ELF sections to prevent DT_FLAGS_1 warnings on old Android versions

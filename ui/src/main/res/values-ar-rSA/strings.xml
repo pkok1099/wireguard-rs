@@ -281,7 +281,7 @@
     <string name="tunnel_dns_failure">غير قادر على حل اسم مضيف نظام أسماء النطاقات (DNS hostname): \"%s\"</string>
     <string name="tunnel_rename_error">غير قادر على إعادة تسمية النفق: %s</string>
     <string name="tunnel_rename_success">تمت إعادة تسمية النفق بنجاح إلى \"%s\"</string>
-    <string name="type_name_go_userspace">انتقل مساحة المستخدمين</string>
+    <string name="type_name_rust_userspace">انتقل مساحة المستخدمين</string>
     <string name="type_name_kernel_module">وحدة النواة</string>
     <string name="unknown_error">خطأ غير معروف</string>
     <string name="updater_avalable">يتوفر تحديث للتطبيق. الرجاء التحديث الآن.</string>

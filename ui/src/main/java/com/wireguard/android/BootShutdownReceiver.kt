@@ -16,7 +16,13 @@ class BootShutdownReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val action = intent.action ?: return
         applicationScope.launch {
-            if (Application.getBackend() !is WgQuickBackend) return@launch
+            try {
+                if (Application.getBackend() !is WgQuickBackend) return@launch
+            } catch (e: Throwable) {
+                // Backend init failed; nothing to restore/save.
+                Log.e(TAG, "Failed to get backend", e)
+                return@launch
+            }
             val tunnelManager = Application.getTunnelManager()
             if (Intent.ACTION_BOOT_COMPLETED == action) {
                 Log.i(TAG, "Broadcast receiver restoring state (boot)")

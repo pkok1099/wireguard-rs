@@ -229,7 +229,7 @@
     <string name="tunnel_dns_failure">Não foi possível resolver host DNS: \"%s\"</string>
     <string name="tunnel_rename_error">Não foi possível renomear o túnel: %s</string>
     <string name="tunnel_rename_success">Renomeado com sucesso o túnel para “%s”</string>
-    <string name="type_name_go_userspace">Espaço do usuário Go</string>
+    <string name="type_name_rust_userspace">Espaço do usuário Go</string>
     <string name="type_name_kernel_module">Modo de Kernel</string>
     <string name="unknown_error">Erro desconhecido</string>
     <string name="updater_avalable">Uma atualização do aplicativo está disponível. Pôr favor atualize agora.</string>

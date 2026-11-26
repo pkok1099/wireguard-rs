@@ -239,7 +239,7 @@
     <string name="tunnel_dns_failure">Nu se poate rezolva numele gazdei DNS: „%s”</string>
     <string name="tunnel_rename_error">Tunelul nu poate fi redenumit: %s</string>
     <string name="tunnel_rename_success">Tunelul a fost redenumit ca „%s”</string>
-    <string name="type_name_go_userspace">Spațiu de utilizator Go</string>
+    <string name="type_name_rust_userspace">Spațiu de utilizator Go</string>
     <string name="type_name_kernel_module">Modul nucleu</string>
     <string name="unknown_error">Eroare necunoscută</string>
     <string name="version_summary">Bibliotecă %1$s %2$s</string>

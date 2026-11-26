@@ -184,7 +184,7 @@
     <string name="tunnel_dns_failure">DNS සත්කාරක නාමය විසඳිය නොහැක: \"%s\"</string>
     <string name="tunnel_rename_error">උමග නැවත නම් කළ නොහැක: %s</string>
     <string name="tunnel_rename_success">උමඟ සාර්ථකව \"%s\" ලෙස නම් කරන ලදී</string>
-    <string name="type_name_go_userspace">පරිශීලක අවකාශයට යන්න</string>
+    <string name="type_name_rust_userspace">පරිශීලක අවකාශයට යන්න</string>
     <string name="type_name_kernel_module">කර්නල් මොඩියුලය</string>
     <string name="unknown_error">නොදන්නා දෝෂයකි</string>
     <string name="version_summary">%1$s පසුපෙළ %2$s</string>

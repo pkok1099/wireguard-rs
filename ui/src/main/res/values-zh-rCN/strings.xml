@@ -216,7 +216,7 @@
     <string name="tunnel_dns_failure">无法解析 DNS 主机名：“%s”</string>
     <string name="tunnel_rename_error">无法重命名隧道：%s</string>
     <string name="tunnel_rename_success">隧道已重命名为 “%s”</string>
-    <string name="type_name_go_userspace">Go userspace</string>
+    <string name="type_name_rust_userspace">Go userspace</string>
     <string name="type_name_kernel_module">Kernel module</string>
     <string name="unknown_error">未知错误</string>
     <string name="updater_avalable">WireGuard 可以更新了，请立即更新。</string>
